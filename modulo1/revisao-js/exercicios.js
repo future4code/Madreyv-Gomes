@@ -41,22 +41,47 @@ function retornaNumerosParesElevadosADois(array) {
 
 // EXERCÍCIO 06
 function retornaMaiorNumero(array) {
-  
+    let maior = 0;
+    for (const numero of array) {
+        if(numero > maior) maior = numero
+    }
+    return maior;
 }
 
 // EXERCÍCIO 07
 function retornaObjetoEntreDoisNumeros(num1, num2) {
+    let maior = retornaMaiorNumero([num1, num2]);
+    let menor = num1;
+    
+    if(num2 < num1) menor = num2
 
+    return{
+        maiorNumero : maior, 
+        maiorDivisivelPorMenor: Boolean(maior%menor === 0),
+        diferenca: maior - menor
+    }
 }
 
 // EXERCÍCIO 08
 function retornaNPrimeirosPares(n) {
-   
+    let numeros = [0];
+    let contador = 1;
+    while(numeros.length < n){
+        if(contador % 2 === 0) numeros.push(contador)
+        contador++;
+    }
+   return numeros;
 }
 
 // EXERCÍCIO 09
 function classificaTriangulo(ladoA, ladoB, ladoC) {
-
+    if( ladoA === ladoB && ladoB === ladoC) {
+            return "Equilátero"
+    }else if(ladoA === ladoB || ladoB === ladoC || ladoC == ladoA){
+        return "Isósceles"
+    }else{
+        return "Escaleno"
+    }
 }
 
 // EXERCÍCIO 10

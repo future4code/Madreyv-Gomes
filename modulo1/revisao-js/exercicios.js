@@ -86,11 +86,22 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
+    let ordenado = retornaArrayOrdenado(array);
+    return [ordenado[ordenado.length - 2], ordenado[1]];
   
 }
 
 // EXERCÍCIO 11
+function imprimirAtores(array){
+    let string = ""
+    for(let i = 0; i<= array.length - 2; i++){
+        string += `${array[i]}, `
+    }
+    string += `${array[array.length - 1]}`
+    return string
+}
 function retornaChamadaDeFilme(filme) {
+    return`Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${imprimirAtores(filme.atores)}.`
    
 }
 

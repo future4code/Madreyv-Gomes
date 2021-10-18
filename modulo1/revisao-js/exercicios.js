@@ -154,13 +154,16 @@ function retornaArrayOrdenadoAlfabeticamente(consultas) {
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
+   
     return consultas.sort((primeira, segunda)=>{
-        if(primeira.dataDaConsulta < segunda.dataDaConsulta){
-            return -1
-        }else if(primeira.dataDaConsulta > segunda.dataDaConsulta){
-             return 1
-        } else{
-            return 0
-        }
+        return new Date(primeira.dataDaConsulta.split("/").reverse()).getTime() - new Date(segunda.dataDaConsulta.split("/").reverse()).getTime()
     })
+
 }
+
+/*).sort(
+    (primeira, segunda)=>{
+        console.log(
+        new Date(segunda.dataDaConsulta).getDate())
+        //return new Date(primeira.dataDaConsulta).getMonth() < new Date(segunda.dataDaConsulta).getMonth()
+    })*/

@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0; 
+}
+body{
+    height: 100vh;
+}
+
+header{
+    position: relative;
+    background-color: lightpink;
+    height: 15vh;
+    color: saddlebrown;
+    width: 100%;
+}
+
+.titulo{
+    display: inline-block;
+}
+
+.titulo p{
+    font-size: 31px;
+    margin: 15% 20px;
+}
+
+a{
+    text-decoration: 0;
+    color: saddlebrown
+}
+
+.links{
+    position: absolute;
+    bottom: 1vh;
+    right: 0;
+}
+
+.links a{
+    margin-right: 5vw;
+}
+
+.subTitulo{
+    padding: 6vh 0;
+    text-align: center;
+}
+
+form{
+    display: inline-block;
+    margin: 4vh 37vw;
+}
+
+form div{
+    margin-bottom: 2vh;
+}
+form input{
+    width: 100%;
+}
+
+.geral{
+    min-height: 100vh;
+}
+
+table{
+    width: 60%;
+    margin: auto;
+    text-align: center;
+}
+
+tbody tr th{
+    width: 25%;
+}
+tbody tr td img{
+    width: 100%;
+}
+
+footer{
+    POSITION: relative;
+    bottom: 0;
+    background-color: lightpink;
+    width: 100%;
+    padding: 2vh;
+    color: saddlebrown;
+    text-align: center;
+}
+
+footer .redesSociaisImg img{
+    width: 2vw;
+}

@@ -66,6 +66,9 @@ div img {
   *
   **/
 
+div{
+    border: 1px solid red;
+}
 #container-de-descricao {
     background-color: #2274a5;
     color: white;
@@ -73,6 +76,12 @@ div img {
 
 #container-de-descricao>ol {
     padding: 15px 0px;
+}
+
+.descricao{
+    WIDTH: 50%;
+    min-height: 25%;
+    margin: 30vh auto;
 }
 
 #container-para-comprar {

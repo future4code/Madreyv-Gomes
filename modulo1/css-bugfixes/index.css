@@ -63,6 +63,10 @@ div img {
     width: 2%;
 }
 
+.icone:hover{
+    opacity: 0.5;
+}
+
 
 /** 
   *
@@ -70,9 +74,7 @@ div img {
   *
   **/
 
-div{
-    border: 1px solid red;
-}
+
 #container-de-descricao {
     background-color: #2274a5;
     color: white;

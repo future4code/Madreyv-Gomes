@@ -1,0 +1,157 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+div, header, main, footer, section, li{
+    border: 1px solid red;
+}
+
+body{
+    background-color: wheat;
+}
+
+header{
+    height: 10vh;
+    position: relative;
+}
+
+.area{
+    position: relative;
+    display: block;
+}
+
+.logo{
+    display: block;
+    width: 100px;
+    height: 100%;
+}
+
+.links{
+    position: absolute;
+    right: 0;
+    bottom: 1vh;
+}
+
+ul li{
+    display: inline;
+    margin-right: 5vw;
+}
+
+.retangulo, quadro{
+    width: 40%;
+    height: 40vh;
+}
+
+.retangulo{
+    display: inline-block;
+    width: 25%;
+    height: 490px;
+    margin: 6% 12.3%;
+    position: relative;
+}
+
+.quadro{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: -5%;
+    right: -10%;
+}
+
+.quadro img{
+    width: 100%;
+    height: 100%;
+}
+
+.texto{
+    position: absolute;
+    width: 150%;
+    top: 34%;
+}
+
+.textoAEsquerda{
+    left: -50%;
+}
+
+.textoADireita{
+    right: -50%;
+}
+
+.texto p{
+    padding: 3%;
+}
+
+.tituloArea{
+    text-align: center;
+    margin-top: 1%;
+    font-size: 26px;
+}
+
+
+main{
+    position: relative;
+}
+
+.quadros{
+    height: 22vh;
+    width: 20%;
+    margin: 2.25%;
+    display: inline-block;
+}
+
+.quadroExperiencias{
+    width: 100%;
+    height: 25%;
+}
+
+.aviacao{
+    background-color: black;
+}
+.quadro3{
+    background-color: blue;
+}
+.quadro4{
+    background-color: gold;
+}
+.quadro2{
+    background-color: green;
+}
+
+.quadroExperiencias:hover{
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+.quadroExperiencias:hover .textoExperiencia{
+    display: block;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8)
+}
+
+.textoExperiencia{
+    display: none;
+}
+
+.galeria{
+    height: 32vh;
+}
+
+.nomeProjeto{
+    text-align: center;
+    height: 100%;
+    opacity: 0;
+}
+
+.nomeProjeto p{
+    padding: 25%;
+}
+
+.nomeProjeto:hover{
+    opacity: 1;
+}
+
+footer{
+    height: 5vh;
+    position: relative;
+}

@@ -1,31 +1,71 @@
+@font-face {
+    font-family: ZenKurenaido;
+    src: url(fonts/ZenKurenaido-Regular.ttf);
+}
+
 *{
     margin: 0;
     padding: 0;
 }
-div, header, main, footer, section, li{
-    border: 1px solid red;
+
+.corPrincipal{
+    background-color: #132835;
+}
+
+.segundaCor{
+    background-color: #1C494F;
+}
+
+.corClara{
+    background-color: #EEDB89;
+}
+
+.corClaraTexto{
+    color: #EEDB89;
+}
+
+
+a, a:visited, a:active{
+    text-decoration: none;
+    color: black;
 }
 
 body{
-    background-color: wheat;
+    font-family:ZenKurenaido, roboto ;
+    /*background-color: whitesmoke*/
 }
 
 header{
     height: 10vh;
     position: relative;
+    
 }
 
 .area{
     position: relative;
     display: block;
+    min-height: 42vh;
 }
 
 .logo{
     display: block;
     width: 100px;
     height: 100%;
+    position: relative;
 }
 
+.logo img{
+    top: 12%;
+    right: 0;
+    position: absolute;
+    width: 80%;
+    border-radius: 50%;
+    border: 3px solid #1C494F;
+}
+
+.borda{
+    border: 3px solid #132835;
+}
 .links{
     position: absolute;
     right: 0;
@@ -35,6 +75,7 @@ header{
 ul li{
     display: inline;
     margin-right: 5vw;
+    color: #EEDB89;
 }
 
 .retangulo, quadro{
@@ -48,6 +89,10 @@ ul li{
     height: 490px;
     margin: 6% 12.3%;
     position: relative;
+}
+
+.retanguloTexto{
+    height: 300px;
 }
 
 .quadro{
@@ -70,21 +115,27 @@ ul li{
 }
 
 .textoAEsquerda{
-    left: -50%;
+    left: -60%;
 }
 
-.textoADireita{
-    right: -50%;
+.textoADireira{
+    left: 10%;
 }
 
 .texto p{
     padding: 3%;
 }
 
+.maior{
+    font-size: 30px;
+}
+
 .tituloArea{
     text-align: center;
-    margin-top: 1%;
     font-size: 26px;
+    border-bottom: 1px solid #1C494F;
+    width: 70%;
+    margin: auto;
 }
 
 
@@ -102,19 +153,25 @@ main{
 .quadroExperiencias{
     width: 100%;
     height: 25%;
+    background-size: cover;
 }
 
 .aviacao{
-    background-color: black;
+    background-image: url(img/aviacao.jpg);
 }
-.quadro3{
-    background-color: blue;
+.femass{
+    background-image: url(img/femass.jpg);
 }
-.quadro4{
-    background-color: gold;
+.fgb{
+    background-image: url(img/BusinessCardLogo.jpg);
 }
-.quadro2{
-    background-color: green;
+
+.fgb:hover, .femass:hover, .labenu:hover{
+    background-size: contain;
+}
+.labenu{
+    background-image: url(img/labenu.png);
+    background-color: white;
 }
 
 .quadroExperiencias:hover{
@@ -126,32 +183,199 @@ main{
     display: block;
     position: absolute;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.8)
+    /*background-color: rgba(255, 255, 255, 0.8)*/
 }
 
 .textoExperiencia{
     display: none;
+    padding: 1vw;
+    text-align: justify;
 }
 
-.galeria{
-    height: 32vh;
-}
 
 .nomeProjeto{
     text-align: center;
     height: 100%;
-    opacity: 0;
+    background-color: rgba(28, 73, 79, 0);
+}
+
+.m3{
+    background-image: url(img/m3.PNG);
+    background-size: contain;
+}
+
+.netFlix{
+    background-image: url(img/netflixr.PNG);
+    background-size: contain;
+}
+
+.instagram{
+    background-image: url(img/instragram.PNG);
+    background-size: contain;
+}
+
+.deliFoods{
+    background-image: url(img/food.PNG);
+    background-size: contain;
 }
 
 .nomeProjeto p{
     padding: 25%;
+    font-weight: 600;
 }
 
 .nomeProjeto:hover{
     opacity: 1;
+    background-color: rgba(28, 73, 79, 0.8);
+}
+
+.comportamentais, .tecnicas,.formularios{
+    padding: 22px;
+}
+
+.esquerda{
+    text-align:left
+}
+
+.centro{
+    text-align: center;
+}
+
+.direita{
+    text-align: right;
+}
+
+.redesSociais{
+    height: 42vh;
+    width: 50%;
+}
+
+.habilidades ul li{
+    display: block;
+    font-size: 20px;
+    margin-bottom: 1.6%;
+    margin-left: 2%;
+    color: #132835;
+}
+
+.habilidades ul li .barraCinza{
+    height: 8px;
+    background-color: #132835;
+    position: relative;
+    display: inline-block;
+    width: 16%;
+}
+.barraCinza .barraProgresso{
+    position: absolute;
+    height: 100%;
+    background-color: #EEDB89;
+    left: 0;
+}
+.javaScript{
+    width: 70%;
+}
+.flutter{
+    width: 50%;
+}
+.php{
+    width: 30%;
+}
+.typeScript{
+    width: 20%;
+}
+.dart{
+    width: 20%;
+}
+
+.formulario{
+    float: right;
+}
+
+.tecnicas{
+    text-align: center;
+}
+
+.habilidades p{
+    font-size: 20px;
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+.habilidades p span{
+    font-weight: 600;
+}
+.container{
+    position: relative;
+    height: 50%;
+}
+
+.quadradoRedes{
+    display: inline-block;
+    width: 14%;
+    height: 90%;
+    margin: 0.5% 17%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.facebook{
+    background-image: url(https://cdn-icons-png.flaticon.com/512/174/174848.png);
+}
+
+.redeInstagram{
+    background-image: url(https://cdn-icons.flaticon.com/png/512/4923/premium/4923005.png?token=exp=1635043041~hmac=36c5f06141d4507331b19169434c51c0);
+}
+
+.github{
+    background-image: url(https://cdn-icons-png.flaticon.com/512/270/270798.png);
+}
+
+.linkedin{
+    background-image: url(https://cdn-icons.flaticon.com/png/512/3955/premium/3955056.png?token=exp=1635043310~hmac=08c70eb8c4adb9e45e3af0a49b8d2b36);
+}
+.formulario{
+    position: absolute;
+    right: 10%;
+    top: 2%;
+    width: 30%;
+}
+
+form div{
+    margin: 3%;
+}
+
+form label{
+    font-weight: 600;
+}
+form input{
+    width: 80%;
+    border: none;
+    border-bottom: 1px solid #132835;
+}
+
+textarea{
+    display: block;
+    width: 99%;
+}
+
+.contato{
+    margin-top: 2%;
+}
+
+form button{
+    border: none;
+    background-color: #1C494F;
+    color: #EEDB89;
+    width: 100%;
+    padding: 2%;
+}
+
+form button:hover{
+    background-color: #132835;
+    
 }
 
 footer{
-    height: 5vh;
     position: relative;
+    text-align: center;
+    margin-top: 3%;
 }

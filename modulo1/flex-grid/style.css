@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0; 
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100vh;
+}
+
+header, main, footer, section, div{
+    border: 1px solid red;
+}
+
+header{
+    flex-grow: 0;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: mediumvioletred;
+}
+.logo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 2%;
+}
+
+i{
+    width: 3%;
+}
+
+i img{
+    width: 100%;
+}
+
+.logo h1{
+    margin-left: 2%;
+}
+header button{
+    width: 65px;
+    margin: 2%;
+}
+
+main{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+ul li{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    margin: 2%;
+}
+
+ul li i{
+    flex-grow: 0;
+    width: 5%;
+}
+
+ul li a{
+    flex-grow: 1;
+}
+
+.menu{
+    flex-grow: 0;
+    width: 25%;
+}
+
+.menu i img{
+    background-image: url(https://cdn0.iconfinder.com/data/icons/navigation-set-arrows-part-one/32/ChevronRight-512.png);
+    width: 20px;
+    height: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.principal{
+    flex-grow: 1;
+}
+
+footer{
+    flex-grow: 0;
+}

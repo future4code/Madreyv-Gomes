@@ -15,9 +15,6 @@ body{
     background-color: #FFFFE2;
 }
 
-header, footer, footer, div{
-    border: 1px solid red;
-}
 
 header{
     height: 60px;
@@ -56,9 +53,23 @@ video{
 footer{
     text-align: center;
     flex-grow: 0;
-    height: 40px;
+    height: 45px;
 }
 footer p{
     padding: 1%;
     font-weight: 600;
+}
+
+/* pagina especifica de videos*/
+
+#mainVideoEspecifico{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+
+#videoInteiro{
+    margin: 2%;
+    width: 50%;
 }

@@ -21,10 +21,14 @@ header{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 header h2{
     box-shadow: 177px 24px 56px white;
+}
+
+header input{
+    padding: 5px;
 }
 
 header, footer{

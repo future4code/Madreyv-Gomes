@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0; 
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100vh;
+}
+
+
+header{
+    flex-grow: 0;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: mediumvioletred;
+}
+.logo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 2%;
+}
+
+.logo h1{
+    font-size: 20px;
+}
+
+i{
+    width: 3%;
+}
+
+i img{
+    width: 100%;
+}
+
+.logo h1{
+    margin-left: 2%;
+}
+header button{
+    width: 65px;
+    margin: 2%;
+}
+
+main{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.menu{
+    width: 20%;
+    background-color: #f2d0e0;
+}
+ul li{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    margin: 1%;
+}
+
+ul li i{
+    flex-grow: 0;
+    width: 13px;
+    margin: 2%;
+}
+
+ul li a{
+    flex-grow: 1;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.principal{
+    width: 80%;
+}
+
+.cartao{
+    width: 22%;
+    text-align: center;
+    margin: 1%;
+    box-shadow: 2px 2px 7px 1px darkgray;
+    display: inline-block;
+}
+
+.cartao img{
+    width: 100%;
+}
+
+.legenda p{
+    font-size: 15px;
+    margin-top: 4%;
+}
+
+footer{
+    flex-grow: 0;
+    background-color: mediumvioletred;
+    text-align: center;
+}
+
+footer p{
+    padding: 0.5%;
+}

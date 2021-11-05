@@ -96,6 +96,7 @@ class Post extends React.Component {
   }
 
   aoEnviarComentario = () => {
+    console.log("aqui")
     this.setState({
       comentando: false,
       numeroComentarios: this.state.numeroComentarios + 1
@@ -119,7 +120,7 @@ class Post extends React.Component {
     let componenteComentario
 
     if(this.state.comentando) {
-      componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario}/>
+      componenteComentario = <SecaoComentario comentario = "" aoEnviar={this.aoEnviarComentario}/>
     }
 
     let componenteCompartilhar

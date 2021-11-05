@@ -13,11 +13,9 @@ const DivCompartilhar = styled.div`
 `
 
 export class SecaoCompartilhar extends Component {
-    aoCompartilhar = ()=>{
-        console.log("teste")
-    }
+    
 	render() {
-        let comentarioRede = `Compartilhado via ${this.props.rede}`
+        let comentarioRede = `Compartilhado via ${this.props.rede} com a mensagem:`
 		return <DivCompartilhar>
 			<img
                 src={this.props.icone}

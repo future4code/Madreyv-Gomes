@@ -24,16 +24,19 @@ export class SecaoComentario extends Component {
 	}
 	
 	compartilharComentario = () => {
-		console.log(this.props.comentario + this.state.comentario)
+		this.setState({
+			comentario : ""
+		})
+		console.log(`${this.props.comentario}  ${this.state.comentario}`)
 	}
 
 	
 	render() {
 		let funcaoAoClicar
-		if (this.props.comentario !== null) {
+		if (this.props.comentario !== "") {
 			funcaoAoClicar = this.compartilharComentario
 		}else{
-			funcaoAoClicar = this.props.aoEnvia
+			funcaoAoClicar = this.props.aoEnviar
 		}
 		return <CommentContainer>
 			<InputComentario

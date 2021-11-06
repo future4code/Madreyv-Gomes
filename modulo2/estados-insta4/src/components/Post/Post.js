@@ -40,12 +40,7 @@ const UserPhoto = styled.img`
 
 const PostPhoto = styled.img`
   width: 100%;
-`
-const SecaoFlexRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
+  height: 300px;
 `
 
 class Post extends React.Component {
@@ -96,7 +91,6 @@ class Post extends React.Component {
   }
 
   aoEnviarComentario = () => {
-    console.log("aqui")
     this.setState({
       comentando: false,
       numeroComentarios: this.state.numeroComentarios + 1
@@ -109,6 +103,7 @@ class Post extends React.Component {
 
 
   render() {
+
     let iconeCurtida
 
     if(this.state.curtido) {
@@ -117,10 +112,20 @@ class Post extends React.Component {
       iconeCurtida = iconeCoracaoBranco
     }
 
+    //condicional que lida com os diversos parametros que podem acontecer com o comentário, pois o componente comentario é utilizado tanto com o icone de comentar quanto com o botao compartilhar
     let componenteComentario
 
     if(this.state.comentando) {
-      componenteComentario = <SecaoComentario comentario = "" aoEnviar={this.aoEnviarComentario}/>
+      componenteComentario = <SecaoComentario 
+      aparecer="true"
+      mostrarComentarios = "false" 
+      comentario = "" 
+      aoEnviar={this.aoEnviarComentario}/>
+    }else{
+      componenteComentario = <SecaoComentario aparecer="false"
+      mostrarComentarios = "true"
+      comentario = "" 
+      aoEnviar={this.aoEnviarComentario}/>
     }
 
     let componenteCompartilhar

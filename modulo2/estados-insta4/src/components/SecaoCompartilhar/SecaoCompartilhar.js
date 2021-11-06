@@ -23,6 +23,8 @@ export class SecaoCompartilhar extends Component {
                 onClick = {this.props.aoClicar}    
             />
             <SecaoComentario 
+                aparecer="true"
+                mostrarComentarios = "false" 
                 comentario = {comentarioRede} 
                 aoEnviar={this.aoCompartilhar}/>
 		</DivCompartilhar>

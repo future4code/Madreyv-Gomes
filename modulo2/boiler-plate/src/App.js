@@ -6,7 +6,6 @@ const TarefaList = styled.ul`
   padding: 0;
   width: 300px;
   margin-right: 20px;
- 
 `;
 
 const Tarefa = styled.li`
@@ -19,6 +18,9 @@ const InputsContainer = styled.div`
   display: grid;
   grid-auto-flow: column;
   gap: 10px;
+  .botaoRemoverTodos{
+    margin-top: 20px;
+  }
 `;
 const Flex = styled.div`
   display: flex;
@@ -30,7 +32,6 @@ const QuadroTarefas = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-space-evenly;
- 
 `;
 
 class App extends React.Component {
@@ -97,13 +98,18 @@ class App extends React.Component {
       return tarefa;
     });
 
-    let tarefaFiltrada = this.state.tarefas.filter((tarefas)=> tarefas.id === id)
-    console.log(tarefaFiltrada[0])
+    let tarefaFiltrada = this.state.tarefas.filter(
+      (tarefas) => tarefas.id === id
+    );
+    console.log(tarefaFiltrada[0]);
     if (acao === "editar") {
-      this.setState({
-        inputValue: tarefaFiltrada[0].texto
-      }, () => this.removerTarefas(id))
-    }else{
+      this.setState(
+        {
+          inputValue: tarefaFiltrada[0].texto,
+        },
+        () => this.removerTarefas(id)
+      );
+    } else {
       this.setState({
         tarefas: [...tarefasModificadas],
       });
@@ -124,6 +130,12 @@ class App extends React.Component {
       tarefas: tarefa,
     });
   };
+
+  removerTodasAsTarefas= () => {
+    this.setState({
+      tarefas: []
+    })
+  }
 
   render() {
     const listaFiltrada = this.state.tarefas.filter((tarefa) => {
@@ -154,13 +166,20 @@ class App extends React.Component {
             <option value="completas">Completas</option>
           </select>
         </InputsContainer>
+        <InputsContainer>
+          <button 
+          onClick={() => this.removerTodasAsTarefas()}
+          className="botaoRemoverTodos"
+          >
+            Limpar Tarefas
+          </button>
+        </InputsContainer>
         <QuadroTarefas>
           <TarefaList>
             {listaFiltrada.map((tarefa) => {
               if (tarefa.completa === true) {
                 return (
                   <Flex>
-                    
                     <label htmlFor={tarefa.id}>
                       <Tarefa completa={tarefa.completa} key={tarefa.id}>
                         {tarefa.texto}
@@ -171,12 +190,14 @@ class App extends React.Component {
                       id={tarefa.id}
                       name={tarefa.id}
                       defaultChecked={tarefa.completa === false ? "" : "cheked"}
-                      onClick={() => this.selectTarefa(tarefa.id,"")}
+                      onClick={() => this.selectTarefa(tarefa.id, "")}
                     />
                     <button onClick={() => this.removerTarefas(tarefa.id)}>
                       Remover
                     </button>
-                    <button onClick={() => this.selectTarefa(tarefa.id, "editar")}>
+                    <button
+                      onClick={() => this.selectTarefa(tarefa.id, "editar")}
+                    >
                       Editar
                     </button>
                   </Flex>
@@ -204,7 +225,9 @@ class App extends React.Component {
                     <button onClick={() => this.removerTarefas(tarefa.id)}>
                       Remover
                     </button>
-                    <button onClick={() => this.selectTarefa(tarefa.id, "editar")}>
+                    <button
+                      onClick={() => this.selectTarefa(tarefa.id, "editar")}
+                    >
                       Editar
                     </button>
                   </Flex>

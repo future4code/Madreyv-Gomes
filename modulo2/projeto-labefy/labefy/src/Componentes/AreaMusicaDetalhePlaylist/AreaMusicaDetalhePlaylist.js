@@ -77,13 +77,15 @@ const ImagensControlesMusicas = styled.div`
 `;
 
 export default class AreaMusicaDetalhePlaylist extends react.Component {
+  
   renderizarMusicas = () => {
+    console.log("renderizou detalhe musica")
     return this.props.musicas.map((musica) => {
       return (
         <li>
-          <iframe src={musica.url} width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+          {/* <iframe src={musica.url} width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> */}
           <h4>{musica.name}</h4>
-          <h4>{musica.artis}t</h4>
+          <h4>{musica.artist}</h4>
           <ImagensControlesMusicas>
             <ImagensControle src="https://cdn-icons-png.flaticon.com/512/1783/1783245.png" />
             <ImagensControle src="https://cdn-icons-png.flaticon.com/512/1783/1783315.png" />

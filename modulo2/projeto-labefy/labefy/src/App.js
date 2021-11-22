@@ -79,12 +79,16 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    //this.carregarPlaylists()
+    this.carregarPlaylists()
+    // let playlistsCarregadas = this.carregarPlaylists()
+    // this.setState({
+    //   playlists:playlistsCarregadas
+    // })
   }
 
-  componentDidUpdate(){
-    this.carregarPlaylists()
-  }
+  // componentDidUpdate(){
+    
+  // }
 
   mudarTela = (id) => {
     this.setState({
@@ -98,37 +102,22 @@ class App extends React.Component {
 
     const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists'
 
-    const response = axios.get(url,{
+    axios.get(url,{
       headers: {
         Authorization: nome
       }
     })
-
-    response.then((res) => {
-      let playlistsCarregadas = res.data.result.list
+    .then((res) => {
+      console.log('renderizou')
       this.setState({
-        playlists:playlistsCarregadas
+        playlists:res.data.result.list
       })
+
+
     }).catch((err)=>{
       console.log(err.message)
     })
 
-    // try{
-    //   const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists'
-
-    //   const response = await axios.get(url,{
-    //     headers: {
-    //       Authorization: nome
-    //     }
-    //   })
-
-      // let playlistsCarregadas = response.data.result.list
-      // this.setState({
-      //   playlists:playlistsCarregadas
-      // })
-    // } catch(err){
-    //   console.log(err.response)
-    // }
   }
 
   onChangeInputNovaLista = (e) =>{
@@ -138,21 +127,22 @@ class App extends React.Component {
   }
 
   carregarMusicasPlaylist = (id) =>{
-    // try{
-    //   const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`
-
-    //   const response = await axios.get(url,{
-    //     headers:{
-    //       Authorization: nome
-    //     }
-    //   })
-    //   let musicas = response.data.result.tracks
-    //   this.setState({
-    //     musicasPlaylist: musicas
-    //   })
-    // }catch(err){
-    //   console.log(err.response)
-    // }
+    const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`
+    axios.get(url,{
+      headers:{
+        Authorization: nome
+      }
+    })
+    .then((res) =>{
+      console.log(res.data.result.tracks)
+      this.setState({
+        musicasPlaylist: res.data.result.tracks
+      })
+    })
+    .catch((err)=>{
+      console.log(err.message)
+    })
+    
   }
   
   novaPlaylist = async () => {
@@ -204,25 +194,35 @@ class App extends React.Component {
   }
 
   telaARenderizar = () => {
-    console.log('aqui')
-    if(this.state.telaDetalhePlaylist !== true){
-      return(<CardPlaylist
-        playsLists={this.state.playlists}
-        funcaoDelete={this.deletarComponente}
-        funcaoDetalhePlayList={this.mudarTela}
-      />)
-    }else{
-      let itemSelecionado = this.state.playlists.filter((item) => {
-        return item.id === this.state.idAtual
-      })
-      this.carregarMusicasPlaylist(itemSelecionado[0].id)
-      return(
-        <AreaMusicaDetalhePlaylist
-          playlist={itemSelecionado}
-          musicas={this.state.musicasPlaylist}
-        />
-      )
+    console.log(this.state.telaDetalhePlaylist)
+    let itemSelecionado = this.state.playlists.filter((item) => {
+      return item.id === this.state.idAtual
+    })
+    
+
+    let tela = this.state.telaDetalhePlaylist;
+    switch(tela){
+      case false:
+        return (<CardPlaylist
+          playsLists={this.state.playlists|| []}
+          funcaoDelete={this.deletarComponente}
+          funcaoDetalhePlayList={this.mudarTela}
+        />)
+        break;
+      case true:
+        if(this.state.musicasPlaylist.length === 0){
+          this.carregarMusicasPlaylist(itemSelecionado[0].id)
+          console.log(this.state.musicasPlaylist)
+        }
+        return(
+            <AreaMusicaDetalhePlaylist
+              playlist={itemSelecionado}
+              musicas={this.state.musicasPlaylist}
+            />
+            )
+        break
     }
+    
   }
 
   irParaTelaPlayLists = () =>{
@@ -234,9 +234,7 @@ class App extends React.Component {
     })
   }
   render() {
-    //let telaRenderizada = this.telaARenderizar()
-    //this.carregarPlaylists()
-    console.log('aqui')
+    let telaRenderizada = this.telaARenderizar()
     return (
       <>
         <EstiloGlobal />
@@ -253,7 +251,7 @@ class App extends React.Component {
                   <img src="https://cdn-icons-png.flaticon.com/512/1783/1783255.png" onClick={this.novaPlaylist} />
                 </AreaCadastro>
               </CabecalhoPrincipal>
-              {/* {telaRenderizada} */}
+              {telaRenderizada}
               {/* <AreaMusicaDetalhePlaylist/> */}
               {/* <CardPlaylist
                 playsLists={this.state.playlists}

@@ -48,6 +48,7 @@ const CardTransparenteCima = styled.div`
     display: none;
     width: 25%;
     box-shadow: none;
+    cursor: pointer;
   }
   &:hover > img {
     display: block;
@@ -83,6 +84,7 @@ const CardTransparenteBaixo = styled.div`
     display: none;
     width: 25%;
     box-shadow: none;
+    cursor: pointer;
   }
   &:hover > img {
     display: block;
@@ -110,6 +112,7 @@ export default class CardPlaylist extends react.Component {
   detalhePlalist = (id) => {
     this.props.funcaoDetalhePlayList(id)
   }
+
   criarCards = () => {
     return this.props.playsLists.map((item) => {
       return (

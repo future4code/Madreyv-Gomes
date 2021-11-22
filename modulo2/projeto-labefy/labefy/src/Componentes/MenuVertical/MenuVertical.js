@@ -6,7 +6,6 @@ const Menu = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  border: 1px solid red;
   width: 25%;
   background-color: black;
 `;
@@ -16,7 +15,6 @@ const CabecalhoMenu = styled.section`
   flex-direction: row;
   justify-content: flex-start;
   height: 10%;
-  border: 1px solid red;
   width: 100%;
   color: white;
   align-items: center;
@@ -71,10 +69,17 @@ export default class MenuVertical extends react.Component {
             <img src="https://cdn-icons-png.flaticon.com/512/3225/3225401.png" />
             Playlists
           </ItemListaMenu>
-          <ItemListaMenu>
+          {/* <ItemListaMenu>
             <img src="https://cdn-icons-png.flaticon.com/512/1783/1783255.png" />
             Criar Playlist
+          </ItemListaMenu> */}
+          <ItemListaMenu>
+            Artista: {this.props.musicasPlayer[0].artist}
           </ItemListaMenu>
+          <ItemListaMenu>
+            Musica: {this.props.musicasPlayer[0].name}
+          </ItemListaMenu>
+          <iframe src={this.props.musicasPlayer[0].url} width="100%" frameBorder="0"  allow="autoplay" allowfullscreen=""></iframe>
         </ListaMenu>
       </Menu>
     );

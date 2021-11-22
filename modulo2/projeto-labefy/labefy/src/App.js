@@ -24,7 +24,6 @@ const Principal = styled.section`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  border: 1px solid blue;
   min-height: 100vh;
   width: 75%;
   background-color: #1e1e1e;
@@ -67,6 +66,13 @@ const AreaCadastro = styled.div`
   }
 `;
 
+const Player = styled.div`
+  width: 100%;
+  background-color: black;
+  iframe > html > body > video{
+    width: 100%;
+  }
+`
 const nome = 'madreyv-sebastiao-carver'
 class App extends React.Component {
   state = {
@@ -75,20 +81,27 @@ class App extends React.Component {
     telaDetalhePlaylist:false,
     telaPlaylists:true,
     idAtual:"",
-    musicasPlaylist:[]
+    musicasPlaylist:[],
+    player:[{
+      artista:"",
+      nome:"",
+      artista:""
+    }]
   }
 
   componentDidMount(){
     this.carregarPlaylists()
-    // let playlistsCarregadas = this.carregarPlaylists()
-    // this.setState({
-    //   playlists:playlistsCarregadas
-    // })
   }
 
-  // componentDidUpdate(){
-    
-  // }
+  musicasPlayer = (id) => {
+    let musicaAtual = this.state.musicasPlaylist.filter((musica) => {
+      return musica.id === id
+    }) || []
+
+    this.setState({
+      player:musicaAtual
+    })
+  }
 
   mudarTela = (id) => {
     this.setState({
@@ -108,7 +121,6 @@ class App extends React.Component {
       }
     })
     .then((res) => {
-      console.log('renderizou')
       this.setState({
         playlists:res.data.result.list
       })
@@ -134,7 +146,6 @@ class App extends React.Component {
       }
     })
     .then((res) =>{
-      console.log(res.data.result.tracks)
       this.setState({
         musicasPlaylist: res.data.result.tracks
       })
@@ -188,13 +199,49 @@ class App extends React.Component {
         }
       })
 
+      this.carregarPlaylists()
     } catch(err){
       console.log(err)
     }
   }
 
+  adcionarMusicas = (body) => {
+    let url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.state.idAtual}/tracks`
+
+    axios.post(url,body,{
+      headers:{
+        Authorization:nome
+      }
+    })
+    .then((res)=>{
+      if(res.status === 200){
+        this.carregarMusicasPlaylist(this.state.idAtual)
+      }
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
+  }
+
+  removerMusica = (id) => {
+    let url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.state.idAtual}/tracks/${id}`
+
+    axios.delete(url,{
+      headers:{
+        Authorization: nome
+      }
+    })
+    .then((res) => {
+      if(res.status === 200){
+        this.carregarMusicasPlaylist(this.state.idAtual)
+      }
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
+  }
+
   telaARenderizar = () => {
-    console.log(this.state.telaDetalhePlaylist)
     let itemSelecionado = this.state.playlists.filter((item) => {
       return item.id === this.state.idAtual
     })
@@ -212,12 +259,14 @@ class App extends React.Component {
       case true:
         if(this.state.musicasPlaylist.length === 0){
           this.carregarMusicasPlaylist(itemSelecionado[0].id)
-          console.log(this.state.musicasPlaylist)
         }
         return(
             <AreaMusicaDetalhePlaylist
               playlist={itemSelecionado}
               musicas={this.state.musicasPlaylist}
+              funcaoAdcionarMusicas={this.adcionarMusicas}
+              funcaoRemoverMusica={this.removerMusica}
+              player={this.musicasPlayer}
             />
             )
         break
@@ -241,6 +290,7 @@ class App extends React.Component {
         <Container>
           <MenuVertical
             funcaoIrParaPlaylist={this.irParaTelaPlayLists}
+            musicasPlayer={this.state.player}
           />
           <Principal>
             <AreaPlaylist>
@@ -252,12 +302,6 @@ class App extends React.Component {
                 </AreaCadastro>
               </CabecalhoPrincipal>
               {telaRenderizada}
-              {/* <AreaMusicaDetalhePlaylist/> */}
-              {/* <CardPlaylist
-                playsLists={this.state.playlists}
-                funcaoDelete={this.deletarComponente}
-                funcaoDetalhePlayList={this.mudarTela}
-              /> */}
             </AreaPlaylist>
           </Principal>
         </Container>

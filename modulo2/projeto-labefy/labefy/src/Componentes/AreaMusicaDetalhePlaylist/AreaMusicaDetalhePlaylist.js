@@ -5,7 +5,6 @@ const AreaDetalhePlayList = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 1px solid red;
   width: 100%;
   min-height: 80vh;
 `;
@@ -15,7 +14,6 @@ const CabecalhoDetalhePlaylist = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  border: 1px solid blue;
   min-height: 30vh;
 
   img {
@@ -32,8 +30,7 @@ const AreaMusicaDetalhePlaylists = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid red;
-  width: 50%;
+  width: 70%;
 `;
 const ImagemNovaMusica = styled.img`
   width: 8%;
@@ -43,7 +40,6 @@ const ImagensControle = styled.img`
   margin-left: 5%;
 `;
 const MusicaDetalhePlaylist = styled.ul`
-  border: 1px solid blue;
   width: 100%;
 
   li {
@@ -58,6 +54,10 @@ const MusicaDetalhePlaylist = styled.ul`
     &:first-child {
       border: none;
       margin: 3%;
+    }
+
+    h4{
+      width: 33%;
     }
   }
 
@@ -77,20 +77,65 @@ const ImagensControlesMusicas = styled.div`
 `;
 
 export default class AreaMusicaDetalhePlaylist extends react.Component {
+
+  state={
+    inputNome:"",
+    inputArtista:"",
+    urlMusica:""
+  }
+
+  onChangeInputMusica = (e) =>{
+    this.setState({
+      inputNome : e.target.value
+    })
+  }
+  onChangeInputArtista = (e) =>{
+    this.setState({
+      inputArtista : e.target.value
+    })
+  }
+  onChangeInputLink = (e) =>{
+    this.setState({
+      urlMusica : e.target.value
+    })
+  }
+
+  novaMusica = () => {
+    let nome = this.state.inputNome
+    let artista = this.state.inputArtista
+    let link = this.state.urlMusica
+
+    let musicaApi={
+      "name": nome, 
+      "artist": artista,
+      "url": link
+    }
+
+    this.props.funcaoAdcionarMusicas(musicaApi)
+    this.setState({
+      inputNome:"",
+      inputArtista:"",
+      urlMusica:""
+    })
+    
+  }
+
+  tocarMusica = (id) => {
+
+    this.props.player(id)
+  }
   
   renderizarMusicas = () => {
-    console.log("renderizou detalhe musica")
     return this.props.musicas.map((musica) => {
       return (
-        <li>
-          {/* <iframe src={musica.url} width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> */}
-          <h4>{musica.name}</h4>
-          <h4>{musica.artist}</h4>
-          <ImagensControlesMusicas>
-            <ImagensControle src="https://cdn-icons-png.flaticon.com/512/1783/1783245.png" />
-            <ImagensControle src="https://cdn-icons-png.flaticon.com/512/1783/1783315.png" />
-          </ImagensControlesMusicas>
-        </li>
+          <li>
+            <h4>{musica.name}</h4>
+            <h4>{musica.artist}</h4>
+            <ImagensControlesMusicas>
+              <ImagensControle src="https://cdn-icons-png.flaticon.com/512/1783/1783245.png"  onClick={() => this.tocarMusica(musica.id)}/>
+              <ImagensControle src="https://cdn-icons-png.flaticon.com/512/1783/1783187.png" onClick={() => this.props.funcaoRemoverMusica(musica.id)} />
+            </ImagensControlesMusicas>
+          </li>
       );
     });
   };
@@ -105,9 +150,10 @@ export default class AreaMusicaDetalhePlaylist extends react.Component {
           <AreaMusicaDetalhePlaylists>
             <MusicaDetalhePlaylist>
               <li>
-                <input type="text" placeholder="Nome musica" />
-                <input type="text" placeholder="Nome Cantor" />
-                <ImagemNovaMusica src="https://cdn-icons-png.flaticon.com/512/1783/1783255.png" />
+                <input value={this.state.inputNome} type="text" placeholder="Nome musica" onChange={this.onChangeInputMusica}/>
+                <input value={this.state.inputArtista} type="text" placeholder="Nome Cantor"  onChange={this.onChangeInputArtista}/>
+                <input value={this.state.urlMusica} type="text" placeholder="Link Musica"  onChange={this.onChangeInputLink}/>
+                <ImagemNovaMusica src="https://cdn-icons-png.flaticon.com/512/1783/1783255.png" onClick={this.novaMusica} />
               </li>
               {this.renderizarMusicas()}
             </MusicaDetalhePlaylist>

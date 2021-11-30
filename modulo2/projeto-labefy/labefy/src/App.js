@@ -69,9 +69,6 @@ const AreaCadastro = styled.div`
 const Player = styled.div`
   width: 100%;
   background-color: black;
-  iframe > html > body > video{
-    width: 100%;
-  }
 `
 const nome = 'madreyv-sebastiao-carver'
 class App extends React.Component {

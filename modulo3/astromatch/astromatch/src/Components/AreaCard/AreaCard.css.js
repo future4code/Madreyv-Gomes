@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const ContainerCard = styled.div`
   width: 100%;
@@ -21,7 +21,6 @@ export const ImageArea= styled.div`
   overflow: hidden;
   position: relative;
   justify-content: flex-end;
-
   img{
     top: 0;
     width: 98%;
@@ -63,4 +62,15 @@ export const ContainerAreaCard = styled.div`
   z-index: -1;
   filter: blur(7px);
   height: 80%;
+`
+
+const pulse = keyframes`
+
+  0%{ transform: scale(1)}
+  50%{ transform: scale(4)}
+  100%{ transform: scale(1)}
+`
+
+export const Loader = styled.img`
+  animation: ${pulse} 1s linear infinite;
 `

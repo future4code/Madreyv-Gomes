@@ -5,6 +5,7 @@ import Header from './Components/Header/Header';
 import AreaCardApp from './Components/AreaCard/AreaCardApp';
 import ListaMatches from './Components/ListaMatches/ListaMatches';
 import { useState } from 'react';
+import Chat from './Components/Chat/Chat';
 
 const Global = createGlobalStyle`
   *{
@@ -61,7 +62,8 @@ function App() {
             telas={mudarTela}
             lado={botaoHeader}
           />
-          {telaRenderizada()}
+          {/* {telaRenderizada()} */}
+          <Chat/>
         </ContainerApp>
       </Container>
     </>

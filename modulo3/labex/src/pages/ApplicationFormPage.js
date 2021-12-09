@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router'
 import { ButtonsFormArea, ContainerAplicartionForm } from '../PagesCss/ApplicationFormPage.css'
 
 export default function ApplicationFormPage() {
@@ -35,6 +36,8 @@ export default function ApplicationFormPage() {
                 alert("Contacte o administrador erro: 02")
         }
     }
+
+    const history = useNavigate()
     return (
         <div>
             <ContainerAplicartionForm>
@@ -75,7 +78,7 @@ export default function ApplicationFormPage() {
             </select>
             <ButtonsFormArea>
                 <button>enviar</button>
-                <button>voltar</button>
+                <button onClick = {() => history(-1)}>voltar</button>
             </ButtonsFormArea>
         </ContainerAplicartionForm>
         </div>

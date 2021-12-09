@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router'
 import { ButtonsArea, TripFormArea } from '../PagesCss/CreateTripPage.css'
 
 export default function CreateTripPage() {
@@ -8,6 +9,8 @@ export default function CreateTripPage() {
     const [description, setDescription] = useState("")
     const [duration, setDuration] = useState("")
     const [destination, setDestination] = useState("")
+
+    const history = useNavigate()
 
     const onChageValues = (e) => {
         
@@ -62,7 +65,7 @@ export default function CreateTripPage() {
 
             <ButtonsArea>
                 <button>Criar!</button>
-                <button>Voltar</button>
+                <button onClick={() => history(-1)}>Voltar</button>
             </ButtonsArea>
 
         </TripFormArea>

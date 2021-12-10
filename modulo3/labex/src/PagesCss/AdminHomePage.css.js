@@ -18,6 +18,10 @@ export const AdminContainerPanel = styled.div`
     justify-content: space-between;
     margin: 4% 0;
 
+    h2{
+        margin: 3%;
+    }
+
     border: 1px solid blue;
 `
 

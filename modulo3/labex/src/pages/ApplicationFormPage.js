@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router'
+import { useForm } from '../Components/Hooks/FormHook'
 import { ButtonsFormArea, ContainerAplicartionForm } from '../PagesCss/ApplicationFormPage.css'
+import { getCountries, getTrips } from '../Services.js/Api'
 
-export default function ApplicationFormPage() {
+export default function ApplicationFormPage(props) {
 
     const [place, setPlace] = useState('')
     const [age, setAge] = useState(0)
@@ -10,8 +12,43 @@ export default function ApplicationFormPage() {
     const [profession, setProfession] = useState('')
     const [name, setName] = useState('')
     const [country, setCountry] = useState('')
+    const [countries, setCountries] = useState([])
+    const [trips, setTrips] = useState([])
 
-    const onChageValues = (e) => {
+    const [form,onChange] = useForm({
+        "name": "Astrodev",
+        "age": 20,
+        "applicationText": "Quero muuuuuuito ir!!!",
+        "profession": "Chefe",
+        "country": "Brasil"
+
+    })
+
+
+    useEffect(() => {
+        const tripRequest = getTrips()
+        const contriesRequest = getCountries()
+
+        tripRequest.then((res) => {
+            setTrips(res.trips)
+        }).catch((err)=>{
+            console.log(err)
+        })
+
+        contriesRequest.then((res)=>{
+            let contriesName = res.map((country)=>{
+                return country.nome.abreviado
+            })
+
+            setCountries(contriesName)
+        }).catch((err)=>{
+            console.log(err)
+        })
+        
+    }, [])
+
+
+    const onChangeValues = (e) => {
         
         switch(e.target.name){
             case 'name':
@@ -37,44 +74,68 @@ export default function ApplicationFormPage() {
         }
     }
 
+    const handleClick = (e) => {
+        e.preventDefault()
+    }
+
+    const renderOption = ()=>{
+        return trips.map((trip) => {
+            return <option key={trip.id}>{trip.name}</option>
+
+        })
+    }
+
+    const renderCountries = ()=>{
+        return countries.map((country)=>{
+            return <option key={country}>{country}</option>
+        })
+
+    }
     const history = useNavigate()
     return (
         <div>
             <ContainerAplicartionForm>
             <h2>Inscreva-se para uma viagem</h2>
-            <select name="place">
+            <form onSubmit={handleClick}></form>
+            <select 
+                name="place" 
+                value={place} 
+                onChange = {onChangeValues}
+            >
                 <option>Escolha uma Viagem</option>
+                {renderOption()}
             </select>
             <input
                 type="text"
                 value={name}
-                onChange={onChageValues}
+                onChange={onChangeValues}
                 placeholder="Nome"
                 name="name"
             />
             <input
                 type="number"
                 value={age}
-                onChange={onChageValues}
+                onChange={onChangeValues}
                 placeholder="idade"
                 name="age"
             />
             <input
                 type="text"
                 value={appText}
-                onChange={onChageValues}
+                onChange={onChangeValues}
                 placeholder="Texto de Candidatura"
                 name="applicationText"
             />
             <input
                 type="text"
                 value={profession}
-                onChange={onChageValues} 
+                onChange={onChangeValues} 
                 placeholder="Profissão"
                 name="profession"
             />
-             <select name="country">
+             <select name="country" onChange={onChangeValues}>
                 <option>Escolha uma Viagem</option>
+                {renderCountries()}
             </select>
             <ButtonsFormArea>
                 <button>enviar</button>

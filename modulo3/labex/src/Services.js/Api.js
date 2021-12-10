@@ -6,12 +6,11 @@ import { baseUrl, token } from "./axiosConfig"
 export const getTrips = async(variable) => {
 
     const url = baseUrl + 'trips'
-    console.log(url)
 
     try{
-        const resquest = await axios.get(url)
+        const request = await axios.get(url)
 
-        console.log(resquest.data)
+        return request.data
 
     }catch(err){
         console.log(err.response)
@@ -53,6 +52,76 @@ export const setTrip = async(trip) => {
         })
 
         console.log(request.data)
+    }catch(err){
+        console.log(err.message)
+    }
+}
+
+export const applyToTrip = async(user,idTrip) => {
+    idTrip = 'UEs6VhRusDQhUVNH5yav'
+    const url = baseUrl + `trips/${idTrip}/apply`
+    const body = {
+        "name": "Astrodev",
+        "age": 20,
+        "applicationText": "Quero muuuuuuito ir!!!",
+        "profession": "Chefe",
+        "country": "Brasil"
+    }
+
+    try{
+        const request = await axios.post(url, body,{
+            headers:{
+                'Content-Type':"application/json",
+            }
+        })
+
+        console.log(request.data.message)
+    }catch(err){
+        console.log(err.message)
+    }
+
+}
+
+export const login = async(user) =>{
+    const url = baseUrl + 'login'
+
+    try{
+        const request = await  axios.post(url,user,{
+            headers:{
+                'Content-Type':"application/json",
+            }
+        })
+
+        return request.data
+    }catch(err){
+        alert("Usuario ou senha errados!")
+    }
+}
+
+export const deleteTrip = async (id) => {
+    const url = baseUrl + 'trips/' + id
+
+    try{
+        const request = await axios.delete(url,{
+            headers:{
+                'Content-Type':"application/json",
+                auth:token
+            }
+        })
+        return request.data.success
+    }catch(err){
+        alert(err.message)
+    }
+}
+
+export const getCountries = async(user) => {
+    const url = 'https://servicodados.ibge.gov.br/api/v1/paises/'
+
+    try{
+
+        const request = await axios.get(url)
+
+        return request.data
     }catch(err){
         console.log(err.message)
     }

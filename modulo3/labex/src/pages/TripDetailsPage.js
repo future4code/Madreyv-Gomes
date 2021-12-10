@@ -1,9 +1,12 @@
 import React from 'react'
 import CandidateCard from '../Components/CandidateCard'
+import { useProtectedPage } from '../Components/Hooks/ProtectedPageHook'
 import TripCard from '../Components/TripCard'
 import { ContainerTrip } from '../PagesCss/TripDetailsPaje.css'
 
 export default function TripDetailsPage() {
+
+    useProtectedPage()
     return (
         <ContainerTrip>
             <h2>Titulo Viagem</h2>

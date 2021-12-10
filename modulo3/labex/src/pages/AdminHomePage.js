@@ -1,10 +1,51 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import AdminTripCard from '../Components/AdminTripCard'
+import { useProtectedPage } from '../Components/Hooks/ProtectedPageHook'
 import { AdminContainerPanel, AdminHomePageContainer, AdminPanelButtons, AdminTripCardArea } from '../PagesCss/AdminHomePage.css'
+import { deleteTrip, getTrips } from '../Services.js/Api'
 
 export default function AdminHomePage() {
+    const [trips, setTrips] = useState([])
+    const [deleted, setDeleted] = useState(true)
     const history = useNavigate()
+
+    useProtectedPage()
+
+    useEffect(() => {
+        const tripRequest = getTrips()
+
+        tripRequest.then((res) => {
+            setTrips(res.trips)
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }, [deleted])
+
+
+    const renderTrips = ()=>{
+        return trips.map((trip) => {
+            return <AdminTripCard 
+                        trips={trip} 
+                        deleteFunction={delTrip}
+                    />
+        })
+    }
+
+    const delTrip = (id)=>{
+        const request = deleteTrip('fhgj')
+        request.then((res) => {
+            setDeleted(res)
+        }).catch((err)=>{
+            alert("O componente não foi deletado!")
+        })
+    }
+
+    const logout = () =>{
+        window.localStorage.removeItem('token')
+        history('/',{replace:true})
+    }
+    
     return (
         <AdminHomePageContainer>
            <AdminContainerPanel>
@@ -12,12 +53,11 @@ export default function AdminHomePage() {
                <AdminPanelButtons>
                    <button onClick={() => history(-1)}>Voltar</button>
                    <button onClick={() => history("createTrip")}>Criar Viagem</button>
-                   <button>Logout</button>
+                   <button onClick={logout}>Logout</button>
                </AdminPanelButtons>
            </AdminContainerPanel>
            <AdminTripCardArea>
-                <AdminTripCard/>
-                <AdminTripCard/>
+                {renderTrips()}
            </AdminTripCardArea>
         </AdminHomePageContainer>
     )

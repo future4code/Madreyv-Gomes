@@ -10,3 +10,7 @@ export const CardLogin = styled.div`
     justify-content: space-evenly;
     border: 1px solid red;
 `
+
+export const InputPassword = styled.input`
+    Text-security: disc;
+`

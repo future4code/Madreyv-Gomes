@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
+import { useProtectedPage } from '../Components/Hooks/ProtectedPageHook'
 import { ButtonsArea, TripFormArea } from '../PagesCss/CreateTripPage.css'
 
 export default function CreateTripPage() {
@@ -11,6 +12,7 @@ export default function CreateTripPage() {
     const [destination, setDestination] = useState("")
 
     const history = useNavigate()
+    useProtectedPage()
 
     const onChageValues = (e) => {
         

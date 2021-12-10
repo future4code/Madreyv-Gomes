@@ -36,46 +36,34 @@ export const getTripDetail = async(id) => {
 export const setTrip = async(trip) => {
 
     const url = baseUrl + 'trips'
-    const body = {
-        "name": "Ano novo em Rio das Ostras",
-        "planet": "Terra",
-        "date": "31/12/2021",
-        "description": "Venha passar a virada pertinho do Sol!",
-        "durationInDays": 7
-    }
+   
     try{
-        const request = await axios.post(url, body,{
+        const request = await axios.post(url, trip,{
             headers:{
                 'Content-Type':"application/json",
                 auth:token
             }
         })
 
-        console.log(request.data)
+        return request.data
     }catch(err){
-        console.log(err.message)
+       return err.message
     }
 }
 
 export const applyToTrip = async(user,idTrip) => {
-    idTrip = 'UEs6VhRusDQhUVNH5yav'
-    const url = baseUrl + `trips/${idTrip}/apply`
-    const body = {
-        "name": "Astrodev",
-        "age": 20,
-        "applicationText": "Quero muuuuuuito ir!!!",
-        "profession": "Chefe",
-        "country": "Brasil"
-    }
 
+    const url = baseUrl + `trips/${idTrip}/apply`
+   
     try{
-        const request = await axios.post(url, body,{
+        const request = await axios.post(url, user,{
             headers:{
                 'Content-Type':"application/json",
             }
         })
 
         console.log(request.data.message)
+        return request.data
     }catch(err){
         console.log(err.message)
     }

@@ -1,74 +1,106 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
+import { useForm } from '../Components/Hooks/FormHook'
 import { useProtectedPage } from '../Components/Hooks/ProtectedPageHook'
 import { ButtonsArea, TripFormArea } from '../PagesCss/CreateTripPage.css'
+import { setTrip } from '../Services.js/Api'
 
 export default function CreateTripPage() {
 
-    const [name, setName] = useState("")
-    const [date, setDate] = useState("")
-    const [description, setDescription] = useState("")
-    const [duration, setDuration] = useState("")
-    const [destination, setDestination] = useState("")
-
     const history = useNavigate()
     useProtectedPage()
+    const [form, onChange] = useForm({
+        "name": "",
+        "planet": "",
+        "date": "",
+        "description": "",
+        "durationInDays": ''
+    })
 
-    const onChageValues = (e) => {
-        
-        switch(e.target.name){
-            case 'name':
-                setName(e.target.value)
-                break;
-            case 'date':
-                setDate(e.target.value)
-                break
-            case 'description':
-                setDescription(e.target.value)
-                break;
-            case 'duration':
-                setDuration(e.target.value)
-                break
-            default:
-                setDestination(e.target.value)
-        }
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        const response = setTrip(form)
+
+        response.then((res) => {
+            if(res.trip){
+                alert("Viagem Cadastrada com Sucesso!")
+                history(-1,{replace:true})
+            }else{
+                alert("Viagem não Cadastrada! Tente novamente!")
+            }
+        })
+
     }
+
+    const dataLimite = () => {
+        const dataAtual = new Date();
+        const dia = dataAtual.getDate();
+        const mes = dataAtual.getMonth() + 1;
+        const ano = dataAtual.getFullYear();
+        return `${ano}-${mes}-${dia}`;
+    };
 
 
     return (
         <TripFormArea>
             <h2>Criar Viagem</h2>
+
+            <form onSubmit={handleClick}>
+
             <input
-                value={name}
-                onChange={onChageValues} 
-                placeholder="Nome" name="name"/>
-            <select name="">
-                <option selected value="Escolha" onChange={onChageValues}>Escolha um Planeta</option>
-            </select>
-            <input 
-                value={date} 
-                type="date" 
-                onChange={onChageValues}
-                name="date"
+                required
+                value={form.name}
+                onChange={onChange} 
+                placeholder="Nome" 
+                name="name"
+
             />
-            <input 
+            <select 
+                required
+                name="planet"
+                value={form.planet}
+                onChange={onChange}
+            >
+                <option selected>Escolha um Planeta</option>
+                <option>Mercúrio</option>
+                <option>Vênus</option>
+                <option>Terra</option>
+                <option>Marte</option>
+                <option>Júpiter</option>
+                <option>Saturno</option>
+                <option>Urano</option>
+                <option>Netuno</option>
+            </select>
+            <input
+                required 
+                value={form.date} 
+                type="date" 
+                onChange={onChange}
+                name="date"
+                min={dataLimite()}
+            />
+            <input
+                required 
                 placeholder="Descrição" 
-                value={description}
-                onChange={onChageValues}
+                value={form.description}
+                onChange={onChange}
                 name="description"
             />
-            <input 
+            <input
+                required 
                 type="number" 
                 placeholder="Duração em dias" 
-                value={duration}
-                onChange={onChageValues}
-                name="duration"
+                value={form.durationInDays}
+                onChange={onChange}
+                name="durationInDays"
             />
 
             <ButtonsArea>
                 <button>Criar!</button>
                 <button onClick={() => history(-1)}>Voltar</button>
             </ButtonsArea>
+            </form>
 
         </TripFormArea>
     )

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 import AdminTripCard from '../Components/AdminTripCard'
 import { useProtectedPage } from '../Components/Hooks/ProtectedPageHook'
 import { AdminContainerPanel, AdminHomePageContainer, AdminPanelButtons, AdminTripCardArea } from '../PagesCss/AdminHomePage.css'
@@ -25,10 +26,12 @@ export default function AdminHomePage() {
 
     const renderTrips = ()=>{
         return trips.map((trip) => {
-            return <AdminTripCard 
-                        trips={trip} 
-                        deleteFunction={delTrip}
-                    />
+            return <Link to={`${trip.id}`}>
+                <AdminTripCard 
+                    trips={trip} 
+                    deleteFunction={delTrip}
+                />
+            </Link>
         })
     }
 

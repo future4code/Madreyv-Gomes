@@ -22,6 +22,7 @@ function App() {
         <Route path="trips" element={<ListTripPage onCliclFunction={setTrips}/>} />
         <Route path="trips/application" element={<ApplicationFormPage trips={trips}/>}/>
         <Route path="admArea" element={<AdminHomePage/>} />
+        <Route path="admArea/:id" element={<TripDetailsPage/>} />
         <Route path="login" element={<LoginPage/>} />
         <Route path="admArea/createTrip" element={<CreateTripPage/>} />
       </Routes>

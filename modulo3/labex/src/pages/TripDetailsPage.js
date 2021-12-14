@@ -4,7 +4,7 @@ import { useProtectedPage } from '../Components/Hooks/ProtectedPageHook'
 import TripCard from '../Components/TripCard'
 import { ContainerTrip } from '../PagesCss/TripDetailsPaje.css'
 
-export default function TripDetailsPage() {
+export default function TripDetailsPage(props) {
 
     useProtectedPage()
     return (

@@ -6,7 +6,6 @@ export const LoginContainerSignUp = styled.div`
     display: flex;
     flex-direction: column;
     width: 100vw;
-    border: 1px solid red;
     justify-content: center;
     align-items: center;
 `

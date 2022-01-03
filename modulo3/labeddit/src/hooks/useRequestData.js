@@ -5,7 +5,6 @@ export const useRequestData = (initialState, url) =>{
     const [data, setData] = useState(initialState)
 
     useEffect(() => {
-        console.log(url)
         axios.get(url,{
             headers:{
                 'Content-Type':"application/json",

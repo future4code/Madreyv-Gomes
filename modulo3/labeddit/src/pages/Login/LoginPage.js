@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ContainerButton, LoginContainer, LoginForm } from './styled.css'
 import { InputText } from 'primereact/inputtext';
 import { useForm } from '../../hooks/useForm';
@@ -8,19 +8,20 @@ import { goToSignup } from '../../routes/coordinates';
 import { login } from '../../services/Services';
 import { useUnprotectedPage } from '../../hooks/useUnprotectedPage';
 
-export default function LoginPage() {
+export default function LoginPage({buttonName, setButtonName}) {
     useUnprotectedPage()
     const[form, onChangeValue, clear] = useForm({email:"", password:''})
+    const [isLoading, setIsLoading] = useState(false)
     const history = useNavigate()
 
     const handleform = (e) =>{
         e.preventDefault()
-        login(form,clear,history)
+        login(form,clear,history,setButtonName,setIsLoading)
     }
     return (
         <LoginContainer>
             <h1>Login</h1>
-            <LoginForm onSubmit={handleform}>
+            <LoginForm  onSubmit={handleform}>
                 <span className="p-float-label">
                     <InputText 
                         id="userEmail" 
@@ -43,10 +44,15 @@ export default function LoginPage() {
                     />
                     <label htmlFor="userPassword">Senha</label>
                 </span>
-                <Button 
+                {isLoading 
+                    ? <Button 
+                       loading 
+                     /> 
+                    : <Button 
                     label="Login" 
                     type='submit'
-                />
+                /> }
+                
             </LoginForm>
             <ContainerButton>
             <Button 

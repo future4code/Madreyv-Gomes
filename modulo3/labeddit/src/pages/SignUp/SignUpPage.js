@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from '../../hooks/useForm'
 import { LoginContainerSignUp, LoginFormSignUp } from './styled'
 import { InputText } from 'primereact/inputtext';
@@ -8,7 +8,7 @@ import { singUp } from '../../services/Services';
 import { useUnprotectedPage } from '../../hooks/useUnprotectedPage';
 
 
-export default function SignUpPage() {
+export default function SignUpPage({setButtonName}) {
 
     useUnprotectedPage()
     const[form, onChangeValue, clear] = useForm({
@@ -16,11 +16,12 @@ export default function SignUpPage() {
         "email": "",
         "password": ""
     })
+    const [isLoading, setIsLoading] = useState(false)
     const history = useNavigate()
 
     const handleForm = (e) =>{
         e.preventDefault()
-        singUp(form,clear,history)
+        singUp(form,clear,history,setButtonName,setIsLoading)
     }
     return (
         <>
@@ -60,10 +61,15 @@ export default function SignUpPage() {
                         />
                         <label htmlFor="userPassword">Senha</label>
                     </span>
-                    <Button 
-                        label="Login" 
-                        type='submit'
-                    />
+                    {isLoading 
+                    ? <Button 
+                       loading 
+                     /> 
+                    : <Button 
+                    label="Cadastrar" 
+                    type='submit'
+                    /> }
+                    
 
                 </LoginFormSignUp>
             </LoginContainerSignUp>

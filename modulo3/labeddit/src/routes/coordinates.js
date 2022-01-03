@@ -8,5 +8,5 @@ export const goToFeed = (navigator) =>{
     navigator('/')
 }
 export const goToPost = (navigator,id) =>{
-    navigator(`/login/${id}`)
+    navigator(`/post/${id}`)
 }

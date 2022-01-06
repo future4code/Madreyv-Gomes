@@ -1,0 +1,13 @@
+.p-button.p-button-icon-only.p-button-rounded {
+    height: 2rem !important;
+    width: 2rem;
+    margin: 0 1.5%;
+}
+
+.p-button{
+    width: 100%;
+}
+
+.p-float-label, .p-inputtext{
+    width: 100%;
+}

@@ -9,7 +9,8 @@
     "exdois": "tsc && node ./build/src/exercicioDois.js",
     "extres": "tsc && node ./build/src/exercicioTres.js",
     "exquatro": "tsc && node ./build/src/exercicioQuatro.js",
-    "excinco": "tsc && node ./build/src/exercicioCinco.js"
+    "excinco": "tsc && node ./build/src/exercicioCinco.js",
+    "exseis": "tsc && node ./build/src/exercicioSeis.js"
   },
   "keywords": [],
   "author": "",

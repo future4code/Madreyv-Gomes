@@ -1,0 +1,19 @@
+{
+  "name": "lista-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node ./build/index.js",
+    "exum": "tsc && node ./build/src/exercicioUm.js",
+    "exdois": "tsc && node ./build/src/exercicioDois.js",
+    "extres": "tsc && node ./build/src/exercicioTres.js",
+    "exquatro": "tsc && node ./build/src/exercicioQuatro.js",
+    "excinco": "tsc && node ./build/src/exercicioCinco.js",
+    "exseis": "tsc && node ./build/src/exercicioSeis.js",
+    "exsete": "tsc && node ./build/src/exercicioSete.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
